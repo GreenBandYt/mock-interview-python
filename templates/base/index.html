@@ -1,0 +1,24 @@
+<!-- templates/base/index.html -->
+{% extends "base/base.html" %}
+
+{% block title %}МОК-интервью — старт{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2 class="mb-4">Добро пожаловать в проект Mock Interview Python</h2>
+    <p class="mb-4">Это система для подготовки к техническому интервью по Python: теоретические вопросы, задачи, статистика и интеграция с Telegram-ботом.</p>
+
+    <div class="d-flex justify-content-center gap-3 mb-4">
+        <a href="/register" class="btn btn-success">Регистрация</a>
+        <a href="/login" class="btn btn-primary">Вход</a>
+    </div>
+
+    <div class="mt-3">
+        <p>Или используйте Telegram-бота:</p>
+        <!-- В будущем — заменить на QR-код -->
+        <a href="https://t.me/mock_interview_python_bot" target="_blank" class="btn btn-outline-secondary">
+            Перейти в бота
+        </a>
+    </div>
+</div>
+{% endblock %}

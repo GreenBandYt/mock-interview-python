@@ -1,0 +1,86 @@
+{# templates/base/base.html #}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}МОК-интервью{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/base/base.css">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="text-center py-3 border-bottom">
+        <h1 class="h3 m-0">Mock Interview Python</h1>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="container my-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-center">
+                <p class="mb-1">
+                    <span class="logo-text">
+                        Разработано —
+                        <img src="/static/images/logo_g.png" alt="G" class="footer-logo">
+                        reenBandYt (GBt)
+                    </span>
+                </p>
+            </div>
+            <div class="footer-right">
+                {% if environment == 'development' %}
+                <div class="bot-control">
+                    <button id="start-bot" class="bot-button">Запустить бота</button>
+                    <button id="stop-bot" class="bot-button" style="display:none;">Остановить бота</button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/static/base/base.js" defer></script>
+
+    {% if environment == 'development' %}
+    <script>
+        const startBotButton = document.getElementById('start-bot');
+        const stopBotButton = document.getElementById('stop-bot');
+
+        startBotButton?.addEventListener('click', async () => {
+            const response = await fetch('/bot/start', { method: 'POST' });
+            if (response.ok) {
+                startBotButton.style.display = 'none';
+                stopBotButton.style.display = 'block';
+                alert('Бот успешно запущен!');
+            } else {
+                alert('Ошибка при запуске бота.');
+            }
+        });
+
+        stopBotButton?.addEventListener('click', async () => {
+            const response = await fetch('/bot/stop', { method: 'POST' });
+            if (response.ok) {
+                stopBotButton.style.display = 'none';
+                startBotButton.style.display = 'block';
+                alert('Бот успешно остановлен!');
+            } else {
+                alert('Ошибка при остановке бота.');
+            }
+        });
+    </script>
+    {% endif %}
+</body>
+</html>

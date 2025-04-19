@@ -1,0 +1,97 @@
+/* =========================================
+   static/base/base.css
+
+   Глобальные базовые стили для веб-интерфейса
+   Используется во всех шаблонах (base.html)
+   Описывает внешний вид:
+   - футера
+   - логотипа
+   - кнопок управления
+   - базовые layout-компоненты
+
+   Поддерживает расширение под роли (user/admin)
+   Подготовлен к интеграции с dev-кнопками бота
+========================================= */
+
+/* ==============================
+   СТИЛИ ДЛЯ ФУТЕРА И ЛОГОТИПА
+============================== */
+
+.footer-logo {
+    height: 24px;              /* Пропорциональный логотип в футере */
+    width: auto;
+    vertical-align: middle;
+    margin: 0 4px;             /* Отступ от текста */
+}
+
+.logo-text {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 4px;                  /* Расстояние между логотипом и текстом */
+}
+
+/* ==============================
+   СТРУКТУРА ФУТЕРА
+============================== */
+
+footer {
+    background: #f8f9fa;       /* Светлый фон */
+    color: #333;               /* Тёмный текст */
+    font-size: 0.85rem;
+    padding: 10px 0;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.footer-center {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.footer-right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* ==============================
+   КНОПКИ ДЛЯ DEV-УПРАВЛЕНИЯ БОТОМ
+   Отображаются только в окружении "development"
+============================== */
+
+.bot-button {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 3px;
+    background-color: #4CAF50;       /* Основной зелёный */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bot-button:hover {
+    background-color: #45a049;
+}
+
+.bot-button:active {
+    background-color: #397d3a;
+}
+
+.bot-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
